@@ -1,0 +1,36 @@
+<mat-grid-list [cols]="columnCount" rowHeight="3:4"
+  (window:resize)="onResize($event)" gutterSize="5">
+  <mat-grid-tile *ngFor="let uuid of listFileID; let i= index">
+    <div class="file-grid-item" fxLayout="column" fxLayoutAlign="start end">
+      <div *ngIf="!canOpen" class="file-grid-image" fxLayout="column"
+        fxLayoutAlign="center center">
+        <img [src]="getImageURL(uuid)" [srcset]="getSrcSet(uuid)"
+          [sizes]="getSizes()" class="img-responsive">
+      </div>
+      <a [href]="getImageURL(uuid)" target="_blank" class="file-grid-image"
+        fxLayout="column" fxLayoutAlign="center center"
+        *ngIf="canOpen">
+        <img [src]="getImageURL(uuid)" [srcset]="getSrcSet(uuid)"
+          [sizes]="getSizes()" class="img-responsive" />
+      </a>
+      <div class="file-grid-remove" *ngIf="canRemove"
+        (click)="removeFile(uuid)">Remove</div>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile *ngIf="canAddMore">
+    <div class="file-grid-add" fxLayout="column"
+      fxLayoutAlign="center center" (click)="uploadFile()"> +
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ngx-uploadcare-widget-custom
+  [input-accept-types]="'.jpg, .jpeg, .png'"
+  multiple="true"
+  [do-not-store]="!store"
+  clearable="true"
+  (on-change)="onChange($event)"
+  (on-upload-complete)="onUploadComplete($event)"
+  (on-progress)="onProgress($event)"
+  [public-key]="PUBLIC_KEY" #uc>
+</ngx-uploadcare-widget-custom>

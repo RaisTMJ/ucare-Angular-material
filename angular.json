@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ucare-sandbox"
+    }
+  },
+  "defaultProject": "ucare-sandbox",
+  "cli": {
+    "analytics": "8eb33e69-dec9-458a-9179-aa24d0344d30"
+  }
 }
