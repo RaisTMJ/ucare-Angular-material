@@ -12,6 +12,7 @@ export class AppComponent {
   completedItem($event: any[]) {
     for (const i of $event) {
       this.images.push(i);
+
     }
 
   }
