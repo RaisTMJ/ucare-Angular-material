@@ -1,12 +1,12 @@
 import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
-import {UploadCareHelper} from 'src/app/uploadcare.helper';
-import {environment} from 'src/environments/environment';
+import {UploadCareHelper} from '../uploadcare.helper';
+import {environment} from '../../environments/environment';
 import {UcWidgetComponent} from 'ngx-uploadcare-widget';
 
 @Component({
   selector: 'app-im-grid',
-  templateUrl: 'src/app/im-grid/im-grid.component.html',
-  styleUrls: ['src/app/im-grid/im-grid.component.scss']
+  templateUrl: './im-grid.component.html',
+  styleUrls: ['./im-grid.component.scss']
 })
 export class ImGridComponent implements OnInit {
 
