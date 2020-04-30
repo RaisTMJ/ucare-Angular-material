@@ -2,11 +2,12 @@ import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angula
 import {UploadCareHelper} from '../uploadcare.helper';
 import {environment} from '../../environments/environment';
 import {UcWidgetComponent} from 'ngx-uploadcare-widget';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-im-grid',
   templateUrl: './im-grid.component.html',
-  styleUrls: ['./im-grid.component.scss']
+  styleUrls: ['./im-grid.component.scss'],
 })
 export class ImGridComponent implements OnInit {
 
@@ -32,6 +33,7 @@ export class ImGridComponent implements OnInit {
   @Output() public onUpload = new EventEmitter<File[]>();
   @Output() public onUploadCompleteCb = new EventEmitter<any[]>();
   @Output() public onRemoveCb = new EventEmitter<any>();
+  @Output() public onError = new EventEmitter<any>();
   public columnCount: number;
   lx = [];
 
@@ -98,10 +100,30 @@ export class ImGridComponent implements OnInit {
     });
   }
 
+  onChange1(file) {
+    this.lx = [];
+    if (file.files) {
+      file.files().forEach((px) => {
+        px.then(info => {
+          this.lx.push(info);
+        });
+      });
+    }
+  }
+
   onChange(file) {
     this.lx = [];
     if (file.files) {
       file.files().forEach((px) => {
+
+        // check failed uploads
+        px.fail(res => {
+          this.onError.emit(res);
+          px.catch(e => console.log(e));
+          console.log(res);
+          console.log(px);
+        });
+
         px.then(info => {
           this.lx.push(info);
         });
