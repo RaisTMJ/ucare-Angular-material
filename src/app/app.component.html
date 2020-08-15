@@ -12,6 +12,7 @@
              [useMaxSize]="true"
              [useMinSize]="true"
              (onRemoveCb)="removeImage($event)"
+             (onError)="uploadError($event)"
              (onUploadCompleteCb)="completedItem($event)"
              [listFileID]="images">
 </app-im-grid>
