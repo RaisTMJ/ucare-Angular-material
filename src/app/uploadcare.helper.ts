@@ -78,7 +78,7 @@ export class UploadCareHelper {
         const w = '';
 
         // set true to add watermark
-        if (id && false) {
+        if (id ) {
             const listSourceSet = [`https://ucarecdn.com/${id}/-/resize/320x/- 320w`,
                 `https://ucarecdn.com/${id}/-/resize/450x/- 450w`,
                 `https://ucarecdn.com/${id}/-/resize/640x/- 640w`,

@@ -2,7 +2,6 @@ import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angula
 import {UploadCareHelper} from '../uploadcare.helper';
 import {environment} from '../../environments/environment';
 import {UcWidgetComponent} from 'ngx-uploadcare-widget';
-import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-im-grid',
